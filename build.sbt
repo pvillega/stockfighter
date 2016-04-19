@@ -1,6 +1,7 @@
 import de.heikoseeberger.sbtheader.license.Apache2_0
 import de.heikoseeberger.sbtheader.AutomateHeaderPlugin
 import com.typesafe.sbt.SbtGit._
+import com.typesafe.sbt.SbtScalariform
 
 name := "StockFighter"
 
@@ -30,6 +31,8 @@ headers := Map(
 )
 
 wartremoverErrors ++= Warts.unsafe
+
+SbtScalariform.defaultScalariformSettings
 
 enablePlugins(AutomateHeaderPlugin, GitVersioning, GitBranchPrompt)
 
