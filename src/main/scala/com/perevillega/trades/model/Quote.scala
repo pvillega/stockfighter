@@ -23,4 +23,8 @@ final case class Quote(venue: String, symbol: String, bid: Option[Int], ask: Opt
                        bidDepth: Int, askDepth: Int, last: Int, lastSize: Int, lastTrade: String, quoteTime: String) {
   lazy val lastTradeDate: DateTime = dateFormatter.parseDateTime(lastTrade)
   lazy val quoteTimeDate: DateTime = dateFormatter.parseDateTime(quoteTime)
+  val salePrice = ask.getOrElse(0)
+  val buyPrice = bid.getOrElse(0)
+  val saleQty = askSize
+  val buyQty = bidSize
 }

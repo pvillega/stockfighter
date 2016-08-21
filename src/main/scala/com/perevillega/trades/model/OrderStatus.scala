@@ -24,7 +24,7 @@ final case class Fill(price: Int, qty: Int, ts: String) {
 }
 
 final case class OrderStatus(id: Int, account: String, venue: String, symbol: String, direction: String, originalQty: Int,
-                             qty: Int, orderType: String, ts: String, fills: List[Fill], totalFilled: Int, open: Boolean) {
+                             qty: Int, price: Int, orderType: String, ts: String, fills: List[Fill], totalFilled: Int, open: Boolean) {
   val orderTypeObj = OrderType(orderType)
   lazy val time = dateFormatter.parseDateTime(ts)
 }

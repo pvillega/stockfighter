@@ -102,7 +102,9 @@ trait TradingAppHelpers extends App {
     _ <- setOrderBook(venue)
     _ <- info(s"Starting Websockets to populate Repository for venue $venue").freeko[API, O]
     _ <- tickerTape(venue, account, onQuoteMessage).freeko[API, O]
+    _ <- info(s"Ticker Tape Websockets running").freeko[API, O]
     _ <- executions(venue, account, onExecutionMessage).freeko[API, O]
+    _ <- info(s"Execution Websockets running").freeko[API, O]
   } yield ()
 
   private def setOrderBook(venue: String) = for {

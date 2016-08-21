@@ -102,7 +102,7 @@ object TradeApiAccumulatingInterpreter extends (TradeApi.DSL ~> ListState) {
   import TradeApi._
 
   // Some default values to avoid repeating the same code over and over again in the implementation
-  private val mockOrderStatus = OrderStatus(0, "", "", "", "", 0, 0, "", "", Nil, 0, open = false).right[ErrorMessage]
+  private val mockOrderStatus = OrderStatus(0, "", "", "", "", 0, 0, 0, "", "", Nil, 0, open = false).right[ErrorMessage]
   private val mockOrderBook = OrderBook("", "", None, None, "").right[ErrorMessage]
   private val mockQuote = Quote("", "", None, None, 0, 0, 0, 0, 0, 0, "", "").right[ErrorMessage]
   private val mockWebsocket = new NettyWebSocket(null, new NettyAsyncHttpProviderConfig()).right[ErrorMessage]
