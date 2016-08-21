@@ -14,8 +14,17 @@
  * limitations under the License.
  */
 
-object Main extends App {
+package com.perevillega.trades.model
 
-  println("Hello world!")
+import com.perevillega.trades._
+import org.joda.time.DateTime
 
+final case class Fill(price: Int, qty: Int, ts: String) {
+  lazy val time: DateTime = dateFormatter.parseDateTime(ts)
+}
+
+final case class OrderStatus(id: Int, account: String, venue: String, symbol: String, direction: String, originalQty: Int,
+                             qty: Int, orderType: String, ts: String, fills: List[Fill], totalFilled: Int, open: Boolean) {
+  val orderTypeObj = OrderType(orderType)
+  lazy val time = dateFormatter.parseDateTime(ts)
 }
