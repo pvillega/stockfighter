@@ -20,13 +20,9 @@ import com.perevillega.trades.model.{Execution, Order, Quote}
 import com.perevillega.trades.service._
 import LogApi._
 import TradeApi._
-import freek._
-import monix.cats._
 import cats.instances.all._
-import monix.execution.Scheduler.Implicits.global
+import freek._
 
-import scala.concurrent.duration._
-import scala.concurrent.Await
 import scala.language.{higherKinds, postfixOps}
 
 object Introduction extends TradingAppHelpers {
@@ -181,9 +177,13 @@ object Introduction_3 extends TradingAppHelpers {
   // There is something you may have noticed from the output of 'example2', the result is a Right[List[Boolean]], when maybe
   // we would expect a Right[Boolean]. This is due to the use fo Onion to stack different effects.
   // If you don't call a method that returns a List (like 'venueStocks', or 'allMyOrders') then you don't need the onion.
-  // You can replace the '.freeko[API, O]' part ny '.freek[API]' and obtain a 'Result[A]' as result, which may be easier to handle.
+  // You can replace the '.freeko[API, O]' part by '.freek[API]' and obtain a 'Result[A]' as result, which may be easier to handle.
   // Although be aware if you do that, you won't be able to use the support methods provided (type mismatch with Onion, sorry!)
-  // But if you need the list, you'll need to bear with the 'Right[List[A]]' result by now :)
+  //
+  // Pascal has recently added (Freek 0.6.0) an '.onionTx' method that allows you to peel the structure. I've not added any example
+  // in here as, for some reason, using this method caused timeouts in the http requests. I'll update this example once I find more
+  // details on how to use it :)
+
 }
 
 object Introduction_4 extends TradingAppHelpers {
