@@ -17,7 +17,7 @@
 package com.perevillega.trades.app
 import com.perevillega.trades.service.LogApi._
 import com.perevillega.trades.service.TradeApi._
-import cats.std.all._
+import cats.instances.all._
 import com.perevillega.trades.model.Order
 import com.perevillega.trades.model.OrderType.Market
 import freek._

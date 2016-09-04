@@ -17,7 +17,7 @@
 package com.perevillega.trades.app
 
 import cats.free._
-import cats.std.all._
+import cats.instances.all._
 import com.ning.http.client.ws.WebSocket
 import com.perevillega.trades.model.json.CirceImplicits._
 import com.perevillega.trades._
@@ -51,7 +51,7 @@ trait TradingAppHelpers extends App {
   // this way we can chain values inside the for-comprehension
   // Even with the onion a `left` in the for-comprehension will short-circuit correctly and exit the program, so all is good
   type API = LogApi.PRG :||: TradeApi.PRG
-  val API = Program[API]
+  val API = DSL.Make[API]
   type O = Result[?] :&: List :&: Bulb
 
   // More Freek magic, unifying interpreters from different languages

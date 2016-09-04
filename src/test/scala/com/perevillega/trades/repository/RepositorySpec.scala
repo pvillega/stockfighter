@@ -106,7 +106,7 @@ class RepositorySpec extends FlatSpec with Matchers {
     val orderBook1 = OrderBook("v1", "s1", Some(bids), Some(asks), "1")
 
     val fills = List(Fill(20, 200, ""), Fill(25, 200, ""))
-    val orderStatus = OrderStatus(1, "acc", "v1", "s1", "buy", 100, 100, "limit", "", fills, 100, open = false)
+    val orderStatus = OrderStatus(1, "acc", "v1", "s1", "buy", 100, 100, 10, "limit", "", fills, 100, open = false)
     val execution = Execution("acc", "v1", "s1", orderStatus, 1, 1, 100, 10, "999", standingComplete = false, incomingComplete = false)
 
     val expected = OrderBook("v1", "s1", Some(bids), Some(List(Request(25, 100, isBuy = false), Request(45, 10, isBuy = false), Request(555, 20, isBuy = false))), "999")
@@ -122,7 +122,7 @@ class RepositorySpec extends FlatSpec with Matchers {
     val orderBook1 = OrderBook("v1", "s1", Some(bids), Some(asks), "1")
 
     val fills = List(Fill(15, 200, ""), Fill(15, 800, ""),  Fill(10, 200, ""))
-    val orderStatus = OrderStatus(1, "acc", "v1", "s1", "sell", 100, 100, "limit", "", fills, 100, open = false)
+    val orderStatus = OrderStatus(1, "acc", "v1", "s1", "sell", 100, 100, 10, "limit", "", fills, 100, open = false)
     val execution = Execution("acc", "v1", "s1", orderStatus, 1, 1, 100, 10, "999", standingComplete = false, incomingComplete = false)
 
     val expected = OrderBook("v1", "s1", Some(List(Request(10, 1800, isBuy = true), Request(5, 30, isBuy = true), Request(1, 9999, isBuy = true))), Some(asks), "999")
@@ -138,7 +138,7 @@ class RepositorySpec extends FlatSpec with Matchers {
     val orderBook1 = OrderBook("v1", "s1", Some(bids), Some(asks), "1")
 
     val fills = List(Fill(15, 3000, ""), Fill(10, 200, ""))
-    val orderStatus = OrderStatus(1, "acc", "v1", "s1", "sell", 100, 100, "limit", "", fills, 100, open = false)
+    val orderStatus = OrderStatus(1, "acc", "v1", "s1", "sell", 100, 100, 10, "limit", "", fills, 100, open = false)
     val execution = Execution("acc", "v1", "s1", orderStatus, 1, 1, 100, 10, "999", standingComplete = false, incomingComplete = false)
 
     val expected = OrderBook("v1", "s1", Some(List(Request(10, 1800, isBuy = true), Request(5, 30, isBuy = true), Request(1, 9999, isBuy = true))), Some(asks), "999")

@@ -34,16 +34,15 @@ enablePlugins(AutomateHeaderPlugin, GitVersioning, GitBranchPrompt)
 resolvers += Resolver.sonatypeRepo("releases")
 resolvers += Resolver.bintrayRepo("projectseptemberinc", "maven")
 
-val catsVersion = "0.6.1"
-val pureConfigVersion = "0.1.9"
-val monixVersion = "2.0-RC8"
-val circeVersion = "0.5.0-M2"
+val catsVersion = "0.7.2"
+val pureConfigVersion = "0.2.1"
+val monixVersion = "2.0.0"
+val circeVersion = "0.5.1"
 val scalaCheckVersion = "1.13.0"
 val scalaTestVersion = "2.2.6"
-val http4sVersion = "0.13.3"
-val kindProjectorVersion = "0.7.1"
+val kindProjectorVersion = "0.8.1"
 val si2712fixVersion = "1.2.0"
-val freekVersion = "0.5.0"
+val freekVersion = "0.6.1"
 val nscalaVersion = "2.12.0"
 val gigaHorseVersion = "0.1.1"
 
@@ -61,10 +60,7 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-generic" % circeVersion,
   "io.circe" %% "circe-parser" % circeVersion,
   "org.scalacheck" %% "scalacheck" % scalaCheckVersion % "test",
-  "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
-  "org.http4s" %% "http4s-dsl" % http4sVersion % "test",
-  "org.http4s" %% "http4s-blaze-server" % http4sVersion % "test",
-  "org.http4s" %% "http4s-circe" % http4sVersion % "test"
+  "org.scalatest" %% "scalatest" % scalaTestVersion % "test"
 )
 
 addCompilerPlugin("org.spire-math" %% "kind-projector" % kindProjectorVersion)

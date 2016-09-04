@@ -18,7 +18,7 @@ package com.perevillega.trades.service
 
 import cats.data.Xor
 import cats.free._
-import cats.std.all._
+import cats.instances.all._
 import com.perevillega.trades.model.{Order, OrderStatus}
 import org.scalatest.{FlatSpec, Matchers}
 import freek._
@@ -31,7 +31,7 @@ class TradeApiSpec extends FlatSpec with Matchers {
 
   "TradeApi" should "run a small program as expected" in {
     val interpreter = TradeApiTestInterpreter
-    val mockOrderStatus = OrderStatus(1, "account", "venue", "stock", "buy", 100, 100, "limit", "", Nil, 100, false)
+    val mockOrderStatus = OrderStatus(1, "account", "venue", "stock", "buy", 100, 100, 10, "limit", "", Nil, 100, false)
     interpreter.mockValue(IsApiUp, true.right[String])
     interpreter.mockValue(IsVenueUp("venue"), true.right[String])
     interpreter.mockValue(Buy("venue", "account", Order("stock", 10, 100)), mockOrderStatus.right[String])
@@ -52,7 +52,7 @@ class TradeApiSpec extends FlatSpec with Matchers {
 
   it should "exit a program if we get an error during execution" in {
     val interpreter = TradeApiTestInterpreter
-    val mockOrderStatus = OrderStatus(1, "account", "venue", "stock", "buy", 100, 100, "limit", "", Nil, 100, false)
+    val mockOrderStatus = OrderStatus(1, "account", "venue", "stock", "buy", 100, 100, 10, "limit", "", Nil, 100, false)
     interpreter.mockValue(IsApiUp, true.right[String])
     interpreter.mockValue(IsVenueUp("venue"), Xor.Left("The venue is not up"))
     interpreter.mockValue(Buy("venue", "account", Order("stock", 10, 100)), mockOrderStatus.right[String])
@@ -73,7 +73,7 @@ class TradeApiSpec extends FlatSpec with Matchers {
 
   it should "iterate over elements of an array" in {
     val interpreter = TradeApiTestInterpreter
-    val mockOrderStatus = OrderStatus(1, "account", "venue", "stock", "buy", 100, 100, "limit", "", Nil, 100, false)
+    val mockOrderStatus = OrderStatus(1, "account", "venue", "stock", "buy", 100, 100, 10, "limit", "", Nil, 100, false)
     interpreter.mockValue(IsApiUp, true.right[String])
     interpreter.mockValue(IsVenueUp("venue"), true.right[String])
     interpreter.mockValue(VenueStocks("venue"), Xor.Right(List("s1", "s2", "s3")))

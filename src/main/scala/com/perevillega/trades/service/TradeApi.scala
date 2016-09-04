@@ -29,7 +29,7 @@ import com.perevillega.trades.model.internal.InternalApiModel.OrderDirection.{Bu
 import com.perevillega.trades.model.internal.InternalApiModel._
 import com.perevillega.trades.model.json.CirceImplicits
 import com.perevillega.trades.support.{HttpClientManager, TestInterpreter}
-import freek.{:|:, FXNil, Program}
+import freek._
 import gigahorse.{Gigahorse, Request}
 import io.circe._
 import io.circe.parser._
@@ -70,8 +70,8 @@ object TradeApi {
   final case class ExecutionsStock(venue: String, account: String, stock: String, onMessage: (String) => Unit, onError: (Throwable) => Unit) extends DSL[Result[WebSocket]]
 
   // Freek magic to to get a Free Monad from the DSL
-  type PRG = DSL :|: FXNil
-  val PRG = Program[PRG]
+  type PRG = DSL :|: NilDSL
+  val PRG = DSL.Make[PRG]
 
   // Support methods, use them when creating your for-comprehensions
   def isStockfighterUp = IsApiUp

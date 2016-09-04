@@ -22,7 +22,7 @@ import LogApi._
 import TradeApi._
 import freek._
 import monix.cats._
-import cats.std.all._
+import cats.instances.all._
 import monix.execution.Scheduler.Implicits.global
 
 import scala.concurrent.duration._
@@ -49,7 +49,7 @@ object Introduction extends TradingAppHelpers {
   import TradeApi._
   import freek._
   import monix.cats._
-  import cats.std.all._
+  import cats.instances.all._
 
   // The first step is to define programs that interact with the Stockfighter API. By using Free Monads we separate the definition step
   // from the execution step. Let's see what I mean by creating a simple program:

@@ -38,8 +38,8 @@ object LogApi {
   final case class LogMsg(level: LogLevel, msg: String) extends DSL[Unit]
 
   // Freek magic to get a Free Monad from the DSL
-  type PRG = DSL :|: FXNil
-  val PRG = Program[PRG]
+  type PRG = DSL :|: NilDSL
+  val PRG = DSL.Make[PRG]
 
   // Helper methods. As usual they just create an instance of the DSL, don't really log anything
   def debug(msg: String) = LogMsg(DebugLevel, msg)
